@@ -1,0 +1,178 @@
+# SonarSplat: Novel View Synthesis of Imaging Sonar via Gaussian Splatting.  
+Advaith V. Sethuraman<sup>1</sup>, Max Rucker<sup>1</sup>, Onur Bagoren<sup>1</sup>, Pou-Chun Kung<sup>1</sup>, Nibarkavi N.B. Amutha<sup>1</sup>, and Katherine A. Skinner<sup>1</sup>
+
+<sup>1</sup>Department of Robotics, University of Michigan, Ann Arbor, MI, USA.
+
+<div align="center">
+<img src="assets/robot_moving.gif" width="800" alt="Robot Moving">
+</div>
+<div align="center">
+<img src="assets/3D_piling_results.jpg" width="800" alt="3D Piling Results">
+</div>
+
+<div align="center">
+
+[![arXiv](https://img.shields.io/badge/arXiv-2504.00159-b31b1b.svg)](https://arxiv.org/abs/2504.00159)
+[![Website](https://img.shields.io/badge/Website-Project%20Page-blue)](https://umfieldrobotics.github.io/sonarsplat3D/)
+[![IEEE Xplore](https://img.shields.io/badge/IEEE%20Xplore-Paper-orange)](https://ieeexplore.ieee.org/document/11223217)
+[![Dataset](https://img.shields.io/badge/Dataset-Download-green)]()
+
+</div>
+
+**Abstract:** In this paper, we present SonarSplat, a novel Gaussian splatting framework for imaging sonar that demonstrates
+realistic novel view synthesis and models acoustic streaking
+phenomena. Our method represents the scene as a set of 3D
+Gaussians with acoustic reflectance and saturation properties.
+We develop a novel method to efficiently rasterize Gaussians to
+produce a range/azimuth image that is faithful to the acoustic
+image formation model of imaging sonar. In particular, we
+develop a novel approach to model azimuth streaking in a
+Gaussian splatting framework. We evaluate SonarSplat using
+real-world datasets of sonar images collected from an underwater
+robotic platform in a controlled test tank and in a real-world lake
+environment. Compared to the state-of-the-art, SonarSplat offers
+improved image synthesis capabilities (+3.2 dB PSNR) and more
+accurate 3D reconstruction (77% lower Chamfer Distance). We
+also demonstrate that SonarSplat can be leveraged for azimuth
+streak removal.
+
+
+
+
+## Installation
+
+Create a conda environment with Python 3.10:
+
+```bash
+conda create -n sonarsplat python=3.10 -y
+conda activate sonarsplat
+```
+
+**Dependence**: Please install [Pytorch](https://pytorch.org/get-started/locally/) first.
+
+Install the required dependencies:
+
+```bash
+pip install -e . 
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+## Experiments
+
+SonarSplat allows for novel view synthesis and 3D reconstruction. We have provided some training commands with parameters to reproduce our experiments from the paper.  
+
+### Novel View Synthesis
+
+#### Training
+
+Train the model for novel view synthesis on the `infra_360_1` dataset:
+
+```
+bash scripts/run_nvs_infra_360_1.sh --data_dir <data_dir> --results_dir <results_dir>
+```
+#### Evaluation
+
+### 3D Reconstruction
+
+#### Training
+
+Train the model for 3D reconstruction on the `Monohansett Shipwreck` dataset:
+
+```
+bash scripts/run_3D_monohansett.sh --data_dir <data_dir> --results_dir <results_dir>
+```
+
+#### Evaluation
+
+### NVS Metrics 
+We evaluate SonarSplat and baselines using PSNR, SSIM, LPIPS. 
+Please organize your rendered images like so: 
+
+```
+root_dir/
+├── baseline1/
+├── baseline2/
+└── sonarsplat/
+    ├── scene1/
+    └── scene2/
+        └── sonar_renders/
+            ├── gt_sonar_images/
+            │   ├── 0000.png
+            │   ├── 0001.png
+            │   └── ...
+            └── sonar_images/
+                ├── 0000.png
+                ├── 0001.png
+                └── ...
+```
+
+Run: 
+
+```bash
+python examples/evaluate_imgs.py --root_folder <root_folder>
+```
+
+In the event that you want to validate all methods use the same GT images, run: 
+
+```bash
+python examples/evaluate_imgs.py --validate_only
+```
+
+### 3D Metrics 
+First, we will need to convert the splat into a mesh: 
+
+```bash 
+python mesh_gaussian.py --ply_path <results_dir>/renders/output_step<iter>.ply 
+```
+Organize your meshes in this structure: 
+
+```
+root_dir/
+├── gt/
+│   ├── <scene1>/
+│   │   └── gt.ply
+│   ├── <scene2>/
+│   │   └── gt.ply
+│   └── ...
+├── preds/
+│   ├── baseline1/
+│   │   ├── <scene1>/
+│   │   │   └── pred.ply
+│   │   ├── <scene2>/
+│   │   │   └── pred.ply
+│   │   └── ...
+│   ├── baseline2/
+│   │   ├── <scene1>/
+│   │   │   └── pred.ply
+│   │   ├── <scene2>/
+│   │   │   └── pred.ply
+│   │   └── ...
+│   └── sonarsplat/
+│       ├── <scene1>/
+│       │   └── pred.ply
+│       ├── <scene2>/
+│       │   └── pred.ply
+│       └── ...
+```
+You can compute metrics with the following command: 
+
+```bash 
+python scripts/compute_pcd_metrics_ply.py --gt_root <root_dir>/gt --pred_root <root_dir>/preds
+```
+
+## Citation
+```
+@ARTICLE{11223217,
+  author={Sethuraman, Advaith V. and Rucker, Max and Bagoren, Onur and Kung, Pou-Chun and Amutha, Nibarkavi N.B. and Skinner, Katherine A.},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={SonarSplat: Novel View Synthesis of Imaging Sonar via Gaussian Splatting}, 
+  year={2025},
+  volume={10},
+  number={12},
+  pages={13312-13319},
+  keywords={Sonar;Three-dimensional displays;Azimuth;Imaging;Acoustics;Rendering (computer graphics);Reflectivity;Neural radiance field;Robots;Covariance matrices;Mapping;deep learning for visual perception;marine robotics},
+  doi={10.1109/LRA.2025.3627089}}
+```
