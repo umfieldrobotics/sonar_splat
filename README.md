@@ -1,5 +1,7 @@
 # SonarSplat: Novel View Synthesis of Imaging Sonar via Gaussian Splatting.  
+
 IEEE Robotics and Automation Letters 2025
+
 Advaith V. Sethuraman<sup>1</sup>, Max Rucker<sup>1</sup>, Onur Bagoren<sup>1</sup>, Pou-Chun Kung<sup>1</sup>, Nibarkavi N.B. Amutha<sup>1</sup>, and Katherine A. Skinner<sup>1</sup>
 
 <sup>1</sup>Department of Robotics, University of Michigan, Ann Arbor, MI, USA.
