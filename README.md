@@ -7,13 +7,6 @@ Advaith V. Sethuraman<sup>1</sup>, Max Rucker<sup>1</sup>, Onur Bagoren<sup>1</s
 <sup>1</sup>Department of Robotics, University of Michigan, Ann Arbor, MI, USA.
 
 <div align="center">
-<img src="assets/robot_moving.gif" width="800" alt="Robot Moving">
-</div>
-<div align="center">
-<img src="assets/3D_piling_results.jpg" width="800" alt="3D Piling Results">
-</div>
-
-<div align="center">
 
 [![arXiv](https://img.shields.io/badge/arXiv-2504.00159-b31b1b.svg)](https://arxiv.org/abs/2504.00159)
 [![Website](https://img.shields.io/badge/Website-Project%20Page-blue)](https://umfieldrobotics.github.io/sonarsplat3D/)
@@ -21,6 +14,15 @@ Advaith V. Sethuraman<sup>1</sup>, Max Rucker<sup>1</sup>, Onur Bagoren<sup>1</s
 [![Dataset](https://img.shields.io/badge/Dataset-Download-green)]()
 
 </div>
+
+<div align="center">
+<img src="assets/robot_moving.gif" width="800" alt="Robot Moving">
+</div>
+<div align="center">
+<img src="assets/3D_piling_results.jpg" width="800" alt="3D Piling Results">
+</div>
+
+
 
 **Abstract:** In this paper, we present SonarSplat, a novel Gaussian splatting framework for imaging sonar that demonstrates
 realistic novel view synthesis and models acoustic streaking
