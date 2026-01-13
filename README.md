@@ -48,7 +48,7 @@ conda create -n sonarsplat python=3.10 -y
 conda activate sonarsplat
 ```
 
-**Dependence**: Please install [Pytorch](https://pytorch.org/get-started/locally/) first.
+**Dependency**: Please install [Pytorch](https://pytorch.org/get-started/locally/) first.
 
 Install the required dependencies:
 
@@ -184,7 +184,7 @@ python scripts/compute_pcd_metrics_ply.py --gt_root <root_dir>/gt --pred_root <r
 
 - [x] Code Release
 - [x] Data Release
-- [ ] Write 3D reconstruction documentation
+- [ ] Write 3D reconstruction meshing documentation
 - [ ] Add more scripts for reproducing results
 
 ## Citation
