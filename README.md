@@ -1,23 +1,10 @@
 # SonarSplat: Novel View Synthesis of Imaging Sonar via Gaussian Splatting.  
+
+IEEE Robotics and Automation Letters 2025
+
 Advaith V. Sethuraman<sup>1</sup>, Max Rucker<sup>1</sup>, Onur Bagoren<sup>1</sup>, Pou-Chun Kung<sup>1</sup>, Nibarkavi N.B. Amutha<sup>1</sup>, and Katherine A. Skinner<sup>1</sup>
 
 <sup>1</sup>Department of Robotics, University of Michigan, Ann Arbor, MI, USA.
-
-<div align="center">
-<img src="assets/robot_moving.gif" width="800" alt="Robot Moving">
-</div>
-<div align="center">
-<img src="assets/3D_piling_results.jpg" width="800" alt="3D Piling Results">
-</div>
-
-<div align="center">
-
-[![arXiv](https://img.shields.io/badge/arXiv-2504.00159-b31b1b.svg)](https://arxiv.org/abs/2504.00159)
-[![Website](https://img.shields.io/badge/Website-Project%20Page-blue)](https://umfieldrobotics.github.io/sonarsplat3D/)
-[![IEEE Xplore](https://img.shields.io/badge/IEEE%20Xplore-Paper-orange)](https://ieeexplore.ieee.org/document/11223217)
-[![Dataset](https://img.shields.io/badge/Dataset-Download-green)]()
-
-</div>
 
 **Abstract:** In this paper, we present SonarSplat, a novel Gaussian splatting framework for imaging sonar that demonstrates
 realistic novel view synthesis and models acoustic streaking
@@ -36,6 +23,21 @@ accurate 3D reconstruction (77% lower Chamfer Distance). We
 also demonstrate that SonarSplat can be leveraged for azimuth
 streak removal.
 
+<div align="center">
+
+<a href="https://arxiv.org/abs/2504.00159"><img src="https://img.shields.io/badge/arXiv-2504.00159-b31b1b.svg" height="32"></a>
+<a href="https://umfieldrobotics.github.io/sonarsplat3D/"><img src="https://img.shields.io/badge/Website-Project%20Page-blue.svg" height="32"></a>
+<a href="https://ieeexplore.ieee.org/document/11223217"><img src="https://img.shields.io/badge/IEEE%20Xplore-Paper-orange.svg" height="32"></a>
+<a href=""><img src="https://img.shields.io/badge/Dataset-Download-green.svg" height="32"></a>
+
+</div>
+
+<div align="center">
+<img src="assets/robot_moving.gif" width="800" alt="Robot Moving">
+</div>
+<div align="center">
+<img src="assets/3D_piling_results.jpg" width="800" alt="3D Piling Results">
+</div>
 
 
 
@@ -48,7 +50,7 @@ conda create -n sonarsplat python=3.10 -y
 conda activate sonarsplat
 ```
 
-**Dependence**: Please install [Pytorch](https://pytorch.org/get-started/locally/) first.
+**Dependency**: Please install [Pytorch](https://pytorch.org/get-started/locally/) first.
 
 Install the required dependencies:
 
@@ -120,6 +122,7 @@ Run:
 ```bash
 python examples/evaluate_imgs.py --root_folder <root_folder>
 ```
+The script will save a `.csv` file conveniently listing all metrics compared to baselines. 
 
 In the event that you want to validate all methods use the same GT images, run: 
 
@@ -144,7 +147,7 @@ First, we will need to convert the splat into a mesh:
 ```bash 
 python mesh_gaussian.py --ply_path <results_dir>/renders/output_step<iter>.ply 
 ```
-Organize your meshes in this structure. Please copy over the GT meshes from `concrete_piling_3D` and `monohansett_3D`: 
+Note: you must perform ICP/manual alignment to get the GT and predicted mesh in the same frame first. Then, organize your meshes in this structure. Please copy over the GT meshes from `concrete_piling_3D` and `monohansett_3D`: 
 
 ```
 root_dir/
@@ -184,7 +187,7 @@ python scripts/compute_pcd_metrics_ply.py --gt_root <root_dir>/gt --pred_root <r
 
 - [x] Code Release
 - [x] Data Release
-- [ ] Write 3D reconstruction documentation
+- [ ] Write 3D reconstruction meshing documentation
 - [ ] Add more scripts for reproducing results
 
 ## Citation
