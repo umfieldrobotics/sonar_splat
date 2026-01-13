@@ -260,16 +260,9 @@ class SonarSensorDataParser:
                         image[:, min(W, range_clear_start):] = 0.0
                         image[:, :range_clear_end] = 0.0
 
-
-
-                        # image[:150, :] = 0.0 
-                        # image[-150:, :] = 0.0
-
                         image = np.clip(image, 0.0, 1.0)
 
-                        # image[:, :90] = 0.0 #just for pole sequence
-
-                        image[:, 0:10] = 0.0
+                        image[:, 0:10] = 0.0 #zero-out edge noise, seems to be artifact of ROS driver
                         image[:, -10:] = 0.0
                         image[0:10, :] = 0.0
                         image[-10:, :] = 0.0
@@ -277,10 +270,6 @@ class SonarSensorDataParser:
                         image = image[:, :loss_cutoff_pixel]
                         
                         if apply_mask:
-                            #get the file name and format it with 10 digits 
-                            # label_fname = "polar_" + Path(fname).stem.zfill(10) + ".png"
-                            #make the label name polar_strip any leading zeros 
-                            #do this for everything except for all 0s 
                             
                             label_fname = "polar_" + Path(fname).stem.lstrip('0') + ".png"
                             label_path = os.path.join(self.data_dir, "sonar_images", "labels", label_fname)
@@ -297,17 +286,8 @@ class SonarSensorDataParser:
                         if image.sum() > 0:
                             image_names.append(fname)
                             #in-fill block here. 
-                            # tmp_image = (255*image.copy()).astype(np.uint8)
-                            # blurred = cv2.medianBlur(tmp_image, 9)
-                            # final = tmp_image.copy()
-                            # final[tmp_image == 0] = np.maximum(tmp_image[tmp_image == 0], blurred[tmp_image == 0])
-                            # image = final
-
-                            # image = cv2.blur(image, (11, 11)) #TODO: remove, just for debugging
                             
                             images.append(image)
-                            #  
-
                             
                             c2w = data['PoseSensor'] 
                             w2c = np.linalg.inv(c2w)
@@ -328,7 +308,7 @@ class SonarSensorDataParser:
 
                             K = np.array(
                                         [
-                                            [1.0/range_resolution, 0.0, 0.0], # range resolution => 0.0596 m #v -> y coordinate
+                                            [1.0/range_resolution, 0.0, 0.0], 
                                             [0.0, 180/torch.pi*(1/azimuth_resolution), num_azimuth_bins/2.],
                                             [0, 0, 1],
                                         ])

@@ -53,6 +53,7 @@ conda activate sonarsplat
 Install the required dependencies:
 
 ```bash
+git submodule update --init --recursive
 pip install -e . 
 ```
 
@@ -60,9 +61,27 @@ pip install -e .
 pip install -r requirements.txt
 ```
 
+## Data
+
+Download the released dataset from: 
+
+```
+dataset/
+├── basin_horizontal_empty1/
+├── basin_horizontal_infra_1/
+└── monohansett_3D/
+    ├── Data/
+    ├── sonar_images/
+    ├── bounds.txt
+    ├── Config.json
+    └── gt.ply (only in 3D datasets)
+```
+
+Data contains `.pkl` files with sensor pose (`data['PoseSensor']`) and sonar images (`data['ImagingSonar']`). `sonar_images/` is used primarily for debugging/choosing subsequences. `bounds.txt` has the 3D bounds of the scene. 
+
 ## Experiments
 
-SonarSplat allows for novel view synthesis and 3D reconstruction. We have provided some training commands with parameters to reproduce our experiments from the paper.  
+SonarSplat allows for novel view synthesis and 3D reconstruction. We have provided some training commands with parameters to reproduce some of our experiments from the paper.  
 
 ### Novel View Synthesis
 
@@ -75,19 +94,6 @@ bash scripts/run_nvs_infra_360_1.sh --data_dir <data_dir> --results_dir <results
 ```
 #### Evaluation
 
-### 3D Reconstruction
-
-#### Training
-
-Train the model for 3D reconstruction on the `Monohansett Shipwreck` dataset:
-
-```
-bash scripts/run_3D_monohansett.sh --data_dir <data_dir> --results_dir <results_dir>
-```
-
-#### Evaluation
-
-### NVS Metrics 
 We evaluate SonarSplat and baselines using PSNR, SSIM, LPIPS. 
 Please organize your rendered images like so: 
 
@@ -121,13 +127,24 @@ In the event that you want to validate all methods use the same GT images, run:
 python examples/evaluate_imgs.py --validate_only
 ```
 
-### 3D Metrics 
+### 3D Reconstruction
+
+#### Training
+
+Train the model for 3D reconstruction on the `Monohansett Shipwreck` dataset:
+
+```
+bash scripts/run_3D_monohansett.sh --data_dir <data_dir> --results_dir <results_dir>
+```
+
+#### Evaluation
+
 First, we will need to convert the splat into a mesh: 
 
 ```bash 
 python mesh_gaussian.py --ply_path <results_dir>/renders/output_step<iter>.ply 
 ```
-Organize your meshes in this structure: 
+Organize your meshes in this structure. Please copy over the GT meshes from `concrete_piling_3D` and `monohansett_3D`: 
 
 ```
 root_dir/
@@ -162,6 +179,13 @@ You can compute metrics with the following command:
 ```bash 
 python scripts/compute_pcd_metrics_ply.py --gt_root <root_dir>/gt --pred_root <root_dir>/preds
 ```
+
+#### TODO 
+
+- [x] Code Release
+- [x] Data Release
+- [ ] Write 3D reconstruction documentation
+- [ ] Add more scripts for reproducing results
 
 ## Citation
 ```
