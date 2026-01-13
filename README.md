@@ -120,6 +120,7 @@ Run:
 ```bash
 python examples/evaluate_imgs.py --root_folder <root_folder>
 ```
+The script will save a `.csv` file conveniently listing all metrics compared to baselines. 
 
 In the event that you want to validate all methods use the same GT images, run: 
 
