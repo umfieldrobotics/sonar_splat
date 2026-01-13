@@ -144,7 +144,7 @@ First, we will need to convert the splat into a mesh:
 ```bash 
 python mesh_gaussian.py --ply_path <results_dir>/renders/output_step<iter>.ply 
 ```
-Organize your meshes in this structure. Please copy over the GT meshes from `concrete_piling_3D` and `monohansett_3D`: 
+Note: you must perform ICP/manual alignment to get the GT and predicted mesh in the same frame first. Then, organize your meshes in this structure. Please copy over the GT meshes from `concrete_piling_3D` and `monohansett_3D`: 
 
 ```
 root_dir/
