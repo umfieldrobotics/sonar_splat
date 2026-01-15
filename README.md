@@ -184,13 +184,6 @@ You can compute metrics with the following command:
 python scripts/compute_pcd_metrics_ply.py --gt_root <root_dir>/gt --pred_root <root_dir>/preds
 ```
 
-#### TODO 
-
-- [x] Code Release
-- [x] Data Release
-- [ ] Write 3D reconstruction meshing documentation
-- [ ] Add more scripts for reproducing results
-
 ## Citation
 ```
 @ARTICLE{11223217,
@@ -204,3 +197,7 @@ python scripts/compute_pcd_metrics_ply.py --gt_root <root_dir>/gt --pred_root <r
   keywords={Sonar;Three-dimensional displays;Azimuth;Imaging;Acoustics;Rendering (computer graphics);Reflectivity;Neural radiance field;Robots;Covariance matrices;Mapping;deep learning for visual perception;marine robotics},
   doi={10.1109/LRA.2025.3627089}}
 ```
+
+## License
+
+SonarSplat is licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p>
