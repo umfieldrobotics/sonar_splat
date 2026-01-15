@@ -28,7 +28,6 @@ streak removal.
 <a href="https://arxiv.org/abs/2504.00159"><img src="https://img.shields.io/badge/arXiv-2504.00159-b31b1b.svg" height="32"></a>
 <a href="https://umfieldrobotics.github.io/sonarsplat3D/"><img src="https://img.shields.io/badge/Website-Project%20Page-blue.svg" height="32"></a>
 <a href="https://ieeexplore.ieee.org/document/11223217"><img src="https://img.shields.io/badge/IEEE%20Xplore-Paper-orange.svg" height="32"></a>
-<a href=""><img src="https://img.shields.io/badge/Dataset-Download-green.svg" height="32"></a>
 <a href="https://drive.google.com/file/d/1sDGprDT-kS-Eunt5XjXAFMkMe1t3GIbd/view?usp=drive_link"><img src="https://img.shields.io/badge/Google%20Drive-Download-red.svg" height="32"></a>
 
 
