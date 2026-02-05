@@ -9,14 +9,14 @@ fi
 DATA_DIR="$1"
 RESULTS_DIR="$2"
 
-python examples/sonar_simple_trainer.py \
+python3 examples/sonar_simple_trainer.py \
 "prune_only" \
 "--batch_size" "1" \
 "--camera_model" "ortho" \
 "--color_prior_asym" "0.08" \
 "--color_prior_weight" "0.0" \
 "--data_dir" "$DATA_DIR" \
-"--results_dir" "$RESULTS_DIR" \
+"--result_dir" "$RESULTS_DIR" \
 "--data_factor" "1" \
 "--disable_viewer" \
 "--elevate_end_step" "1500" \
@@ -92,5 +92,5 @@ python examples/sonar_simple_trainer.py \
 "--tb_every" "100" \
 "--tb_save_image" \
 "--test_every" "8" \
-"--train" \
-"--wandb"
+"--train"
+# "--wandb"

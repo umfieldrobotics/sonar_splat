@@ -16,7 +16,7 @@ python examples/sonar_simple_trainer.py \
 "--color_prior_asym" "0.08" \
 "--color_prior_weight" "0.0" \
 "--data_dir" "$DATA_DIR" \
-"--results_dir" "$RESULTS_DIR" \
+"--result_dir" "$RESULTS_DIR" \
 "--data_factor" "1" \
 "--disable_viewer" \
 "--elevate_end_step" "1500" \

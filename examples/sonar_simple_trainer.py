@@ -45,7 +45,7 @@ from gsplat.optimizers import SelectiveAdam
 from gsplat.strategy.ops import _update_param_with_optimizer
 from gsplat import _rasterization, _sonar_rasterization #, rasterization_sonar2d
 
-from gsplat.rendering import azimuth_antenna_gain_projection
+# from gsplat.rendering import azimuth_antenna_gain_projection
 import matplotlib 
 # matplotlib.use("TkAgg")
 print(matplotlib.get_backend())
@@ -147,7 +147,7 @@ class Config:
     # Steps to evaluate the model
     eval_steps: List[int] = field(default_factory=lambda: list(range(100, 30_000, 1000)))
     # Steps to save the model
-    save_steps: List[int] = field(default_factory=lambda: list(range(100, 30_000, 100)))
+    save_steps: List[int] = field(default_factory=lambda: list(range(100, 30_000, 1000)))
 
     # Initialization strategy
     init_type: str = "random" # "predefined" or "random"
@@ -551,12 +551,12 @@ class Runner:
             width=width,
             height=height,
             packed=self.cfg.packed,
-            absgrad=(
-                self.cfg.strategy.absgrad
-                if isinstance(self.cfg.strategy, DefaultStrategy)
-                else False
-            ),
-            sparse_grad=self.cfg.sparse_grad,
+            # absgrad=(
+            #     self.cfg.strategy.absgrad
+            #     if isinstance(self.cfg.strategy, DefaultStrategy)
+            #     else False
+            # ),
+            # sparse_grad=self.cfg.sparse_grad,
             sph=True,
             rasterize_mode=rasterize_mode,
             distributed=self.world_size > 1,
@@ -1450,7 +1450,7 @@ def main(local_rank: int, world_rank, world_size: int, cfg: Config):
     runner = Runner(local_rank, world_rank, world_size, cfg)
 
     if cfg.wandb:
-        wandb.init(project="uwgs_training", entity="advaiths", config=cfg, group=cfg.data_dir.split("/")[-1])
+        wandb.init(project="uwgs_training", entity="onurbagoren", config=cfg, group=cfg.data_dir.split("/")[-1])
 
     if cfg.ckpt is not None:
         # run eval only
